@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú con Submenú</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Reset básico */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Barra de navegación */
+nav {
+    background-color: #333;
+}
+
+
+/* Lista principal */
+.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Items del menú */
+.menu > li {
+    position: relative;
+}
+
+
+/* Enlaces */
+.menu a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Hover */
+.menu a:hover {
+    background-color: #555;
+}
+
+
+/* Submenú oculto */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 180px;
+}
+
+
+/* Items del submenú */
+.submenu li a {
+    padding: 10px;
+}
+
+
+/* Mostrar submenú al hacer hover */
+.menu li:hover .submenu {
+    display: block;
+}
+
+
+/* Responsive (opcional básico) */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+    }
+}
+</style>
+
+
+</head>
+<body>
+
+
+<nav>
+    <ul class="menu">
+        <li><a href="prueba1.html">Inicio</a></li>
+        <li><a href="pagina1.html">Historia</a></li>
+        
+        <li>
+            <a href="#">Más ▾</a>
+            <ul class="submenu">
+                <li><a href="Benigno.html">Benigno Lopez Sanchez</a></li>
+                <li><a href="Josefa.html">Josefa Lopez Sanchez</a></li>
+                <li><a href="Dolores.html">Dolores Lopez Sanchez</a></li>
+                <li><a href="Pascuala.html">Pascuala Lopez Sanchez</a></li>
+                <li><a href="Eloy.html">Eloy Lopez Sanchez</a></li>
+                <li><a href="Celia.html">Celia Lopez Sanchez</a></li>
+                <li><a href="Pepe.html">Pepe Lopez Sanchez</a></li>
+                <li><a href="pagina4.html">todos</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>  
+
+
+</body>
+<main>
+        <h1> <center>Fiesta de los Lopez 2026</center></h1>
+
+        <!-- Imágenes lado a lado -->
+        <div class="imagenes">
+            
+            <img src="photos/foto3.jpg" alt="Foto 2" class="imagen-full">
+            
+        </div>
+
+        <!-- Texto debajo -->
+        <div class="contenido">
+            <p style="font-size: 40px;">
+                Descendencia de Servando Cesar Lopez Lorenzo y Celia Petra Sanchez Rodriguez
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
+</html>

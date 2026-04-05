@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Página principal */
+.fondo {
+    background-color: rgb(221, 221, 50);
+    /*background-size:cover
+    background-position:center*/
+    
+    
+}
+.imagenes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* evita que se rompa en pantallas pequeñas */
+}
+
+
+.imagenes img {
+    width: 100%;  
+    
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Otras páginas */
+.secundaria {
+    background-color: #cce7ff;
+}
+
+/* Menú */
+nav {
+    background: rgba(207, 25, 25, 0.7);
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: rgb(13, 12, 12);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Contenido centrado */
+.contenido {
+    text-align: center;
+    padding: 40px;
+}
+
+/* SOLO para la página principal */
+.centro {
+    position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Imagen */
+img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Texto debajo de imagen */
+.descripcion {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.menu .submenu {
+    
+  display: none;
+  position: absolute;
+}
+
+/* Mostrar submenú al pasar el ratón */
+.menu li:hover .submenu {
+  display: block;
+}
+
+/* Estilos para asegurar que el submenú se posicione correctamente */
+.menu li {
+  position: relative;
+}

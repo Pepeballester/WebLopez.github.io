@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Galería dinámica</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.gallery-item {
+    background: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+    object-fit: contain;
+    background: #ddd;   
+}
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.caption {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    text-align: center;
+}
+
+.modal img {
+    width: 100vw;
+    height: 85vh;
+}
+
+#modalCaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.close, .prev, .next {
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.close { top: 20px; right: 30px; }
+.prev { top: 50%; left: 20px; font-size: 40px; }
+.next { top: 50%; right: 20px; font-size: 40px; }
+
+</style>
+</head>
+
+<body>
+    <style>
+/* Reset básico */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Barra de navegación */
+nav {
+    background-color: #333;
+}
+
+
+/* Lista principal */
+.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Items del menú */
+.menu > li {
+    position: relative;
+}
+
+
+/* Enlaces */
+.menu a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Hover */
+.menu a:hover {
+    background-color: #555;
+}
+
+
+/* Submenú oculto */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 180px;
+}
+
+
+/* Items del submenú */
+.submenu li a {
+    padding: 10px;
+}
+
+
+/* Mostrar submenú al hacer hover */
+.menu li:hover .submenu {
+    display: block;
+}
+
+
+/* Responsive (opcional básico) */
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+    }
+}
+</style>
+
+   
+    <nav>
+    <ul class="menu">
+        <li><a href="prueba1.html">Inicio</a></li>
+        <li><a href="pagina1.html">Historia</a></li>
+        
+        <li>
+            <a href="#">Más ▾</a>
+            <ul class="submenu">
+                <li><a href="Benigno.html">Benigno Lopez Sanchez</a></li>
+                <li><a href="Josefa.html">Josefa Lopez Sanchez</a></li>
+                <li><a href="Dolores.html">Dolores Lopez Sanchez</a></li>
+                <li><a href="Pascuala.html">Pascuala Lopez Sanchez</a></li>
+                <li><a href="Eloy.html">Eloy Lopez Sanchez</a></li>
+                <li><a href="Celia.html">Celia Lopez Sanchez</a></li>
+                <li><a href="Pepe.html">Pepe Lopez Sanchez</a></li>
+                <li><a href="pagina4.html">todos</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>  
+
+<div class="gallery" id="gallery"></div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+
+    <img id="modalImg">
+    <div id="modalCaption"></div>
+
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+</div>
+
+<script>
+
+// ✅ ARRAY DE IMÁGENES + TEXTOS
+const galleryData = [
+    { src: "photos/photos/img5.jpg", caption: "1969 - Tio Pepe (Fronton)" },
+    { src: "photos/photos/img93.jpg", caption: "1925 - Parte Familia Lopez (Pascuala, Eloy, Dolores, Celia y Pepe"},
+    
+];
+
+// GENERAR GALERÍA
+const gallery = document.getElementById("gallery");
+
+galleryData.forEach((item, index) => {
+    gallery.innerHTML += `
+        <div class="gallery-item">
+            <img src="${item.src}" onclick="openModal(${index})">
+            <div class="caption">${item.caption}</div>
+        </div>
+    `;
+});
+
+// MODAL
+let currentIndex = 0;
+
+function openModal(index) {
+    currentIndex = index;
+    document.getElementById("modal").style.display = "block";
+    showImage();
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function changeSlide(direction) {
+    currentIndex += direction;
+
+    if (currentIndex >= galleryData.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = galleryData.length - 1;
+
+    showImage();
+}
+
+function showImage() {
+    const modalImg = document.getElementById("modalImg");
+    const caption = document.getElementById("modalCaption");
+
+    modalImg.src = galleryData[currentIndex].src;
+    caption.innerText = galleryData[currentIndex].caption;
+
+    modalImg.onload = function () {
+        if (modalImg.naturalHeight > modalImg.naturalWidth) {
+            modalImg.style.objectFit = "contain"; // vertical sin recorte
+        } else {
+            modalImg.style.objectFit = "contain";   // horizontal pantalla completa
+        }
+    };
+}
+
+// ESC para cerrar
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeModal();
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Información</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* CONTENEDOR */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* IMÁGENES */
+.gallery-item {
+    background: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+    object-fit: contain;
+    background: #ddd;   
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* TEXTO */
+.caption {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    text-align: center;
+}
+
+.modal img {
+    width: 90vw;
+    height: 90vh;
+    object-fit: cover;   /* llena toda la pantalla */
+    transition: all 0.3s ease;
+}
+
+    
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* BOTONES */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: white;
+    padding: 10px;
+    user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+</style>
+</head>
+
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="pagina1.html">Historia</a></li>
+        <!--<li><a href="pagina2.html">Galería</a></li>-->
+        <li><a href="pagina3.html">Galeria</a></li>
+    </ul>
+</nav>    
+
+<div class="gallery">
+
+    <!-- EJEMPLOS (repítelo hasta 20) -->
+    
+    <div class="gallery-item">
+        <img src="photos/photos/img1.jpg" onclick="openModal(0)">
+        <div class="caption">prima carmen</div>
+    </div>
+
+    <div class="gallery-item">
+        <img src="photos/photos/img2.jpg" onclick="openModal(1)">
+        <div class="caption">Montañas nevadas en invierno</div>
+    </div>
+
+    <div class="gallery-item">
+        <img src="photos/photos/img3.jpg" onclick="openModal(2)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+
+    <div class="gallery-item">
+        <img src="photos/photos/img4.jpg" onclick="openModal(3)">
+        <div class="caption">Bosque verde en primavera</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img5.jpg" onclick="openModal(4)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img6.jpg" onclick="openModal(5)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img7.jpg" onclick="openModal(6)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img8.jpg" onclick="openModal(7)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img9.jpg" onclick="openModal(8)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img10.jpg" onclick="openModal(9)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img11.jpg" onclick="openModal(10)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img12.jpg" onclick="openModal(11)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img13.jpg" onclick="openModal(12)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img14.jpg" onclick="openModal(13)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img15.jpg" onclick="openModal(14)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img16.jpg" onclick="openModal(15)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img17.jpg" onclick="openModal(16)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img18.jpg" onclick="openModal(17)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img19.jpg" onclick="openModal(18)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+    <div class="gallery-item">
+        <img src="photos/photos/img20.jpg" onclick="openModal(19)">
+        <div class="caption">Ciudad iluminada por la noche</div>
+    </div>
+
+
+
+    <!-- SIGUE IGUAL HASTA img20 -->
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img id="modalImg">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+    
+}
+</div>
+
+<script>
+
+let currentIndex = 0;
+let images = [];
+
+// Cargar imágenes
+window.onload = () => {
+    images = document.querySelectorAll(".gallery img");
+};
+
+function openModal(index) {
+    currentIndex = index;
+    document.getElementById("modal").style.display = "block";
+    showImage();
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function changeSlide(direction) {
+    currentIndex += direction;
+
+    if (currentIndex >= images.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = images.length - 1;
+
+    showImage();
+}
+
+function showImage() {
+    const modalImg = document.getElementById("modalImg");
+    modalImg.src = images[currentIndex].src;
+
+    modalImg.onload = function () {
+        if (modalImg.naturalHeight > modalImg.naturalWidth) {
+            // Imagen vertical → sin recorte
+            modalImg.style.objectFit = "contain";
+        } else {
+            // Imagen horizontal → ocupa toda la pantalla
+            modalImg.style.objectFit = "cover";
+        }
+    };
+}
+
+// Cerrar con ESC
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeModal();
+});
+
+</script>
+
+</body>
+</html>
